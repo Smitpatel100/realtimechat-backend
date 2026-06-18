@@ -185,3 +185,37 @@ Frontend:
 
 Next Day:
 DAY 5 → Login API + JWT Authentication			
+
+Completed:
+✔ LoginRequest DTO
+✔ LoginResponse DTO
+✔ JWT dependency
+✔ JwtService
+✔ Login API
+✔ BCrypt password verification
+✔ JWT generation
+
+Flow:
+
+Login Request
+      ↓
+Controller
+      ↓
+UserService
+      ↓
+Find User
+      ↓
+BCrypt matches()
+      ↓
+JwtService
+      ↓
+Return JWT
+
+
+Interview Points:
+
+Why matches() instead of encode()?
+→ BCrypt uses random salt, so the hash changes every time.
+
+Why JWT?
+→ Stateless authentication without storing sessions.
