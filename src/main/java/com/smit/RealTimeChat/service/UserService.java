@@ -10,13 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	
+	
 
-    public User register(RegisterRequest request) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		super();
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+
+	public User register(RegisterRequest request) {
 
         // Step 1: Check if email already exists
         if (userRepository.existsByEmail(request.getEmail())) {
