@@ -184,4 +184,4 @@ Frontend:
 ---
 
 Next Day:
-DAY 5 → Login API + JWT Authentication
+DAY 5 → Login API + JWT Authentication			
