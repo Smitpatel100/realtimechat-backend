@@ -183,8 +183,9 @@ Frontend:
 
 ---
 
-Next Day:
-DAY 5 → Login API + JWT Authentication			
+# DAY 5 - Login API + JWT Authentication
+
+## Completed
 
 Completed:
 ✔ LoginRequest DTO
@@ -219,3 +220,40 @@ Why matches() instead of encode()?
 
 Why JWT?
 → Stateless authentication without storing sessions.
+
+# DAY 6 - JWT Validation & API Protection
+
+## Completed
+
+Completed:
+✔ JWT extraction
+✔ JWT validation
+✔ JWT Authentication Filter
+✔ SecurityContext authentication
+✔ Stateless Spring Security
+✔ Protected APIs
+
+
+Flow:
+
+Request
+   ↓
+JWT Filter
+   ↓
+Validate Token
+   ↓
+SecurityContext
+   ↓
+Controller
+
+
+Interview Points:
+
+Why do we need JWT Filter?
+→ To intercept requests and authenticate users using JWT.
+
+What is SecurityContextHolder?
+→ It stores authentication information for the current request.
+
+Why SessionCreationPolicy.STATELESS?
+→ Because JWT does not require server-side sessions.

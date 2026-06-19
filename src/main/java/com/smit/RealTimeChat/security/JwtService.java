@@ -1,5 +1,6 @@
 package com.smit.RealTimeChat.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -23,6 +24,7 @@ public class JwtService {
         this.jwtExpiration = jwtExpiration;
     }
 
+    // ── UNCHANGED ────────────────────────────────────────────────────────
     public String generateToken(String email) {
 
         Key signingKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
@@ -36,5 +38,30 @@ public class JwtService {
                 .setExpiration(expiresAt)
                 .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    // ── NEW METHODS ──────────────────────────────────────────────────────
+
+    public String extractEmail(String token) {
+        return extractAllClaims(token).getSubject();
+    }
+
+    public boolean isTokenValid(String token, String email) {
+        String extractedEmail = extractEmail(token);
+        return extractedEmail.equals(email) && !isTokenExpired(token);
+    }
+
+    private boolean isTokenExpired(String token) {
+        Date expiration = extractAllClaims(token).getExpiration();
+        return expiration.before(new Date());
+    }
+
+    private Claims extractAllClaims(String token) {
+        Key signingKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+        return Jwts.parserBuilder()
+                .setSigningKey(signingKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
