@@ -57,12 +57,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (user != null && jwtService.isTokenValid(token, user.getEmail())) {
 
                 // Step 7: Create Authentication object with user details
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(
-                                user,
-                                null,
-                                Collections.emptyList()
-                        );
+            	 UsernamePasswordAuthenticationToken authToken =
+            		    new UsernamePasswordAuthenticationToken(
+            		        user.getEmail(),
+            		        null,
+            		        Collections.emptyList()
+            		    );
 
                 // Step 8: Attach request details to the authentication object
                 authToken.setDetails(

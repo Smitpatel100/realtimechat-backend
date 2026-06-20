@@ -257,3 +257,45 @@ What is SecurityContextHolder?
 
 Why SessionCreationPolicy.STATELESS?
 → Because JWT does not require server-side sessions.
+
+# DAY 7 - Current User Profile API
+
+## Completed
+
+Completed:
+✔ UserResponse DTO
+✔ Get current authenticated user
+✔ /api/users/me endpoint
+✔ Authentication object usage
+
+Flow:
+
+JWT
+ ↓
+JwtAuthenticationFilter
+ ↓
+SecurityContext
+ ↓
+Authentication
+ ↓
+UserController
+ ↓
+UserService
+ ↓
+UserResponse
+
+
+Interview Points:
+
+Why use UserResponse DTO?
+→ To avoid exposing sensitive data like passwords.
+
+What is Authentication?
+→ It represents the currently authenticated user.
+
+How do we know who sent a request?
+→ JWT Filter extracts email from token and stores it in SecurityContext.
+
+# DAY 2 - Frontend Setup
+
+## Completed
