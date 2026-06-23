@@ -1,6 +1,9 @@
 package com.smit.RealTimeChat.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 
 import java.time.LocalDateTime;
@@ -26,6 +29,9 @@ public class User {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+    
+    @ManyToMany(mappedBy = "users")
+    private Set<ChatRoom> chatRooms = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {
@@ -89,6 +95,14 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
 				+ ", createdAt=" + createdAt + "]";
+	}
+	
+	public Set<ChatRoom> getChatRooms() {
+	    return chatRooms;
+	}
+
+	public void setChatRooms(Set<ChatRoom> chatRooms) {
+	    this.chatRooms = chatRooms;
 	}
     
     

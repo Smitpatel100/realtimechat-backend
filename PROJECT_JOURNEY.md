@@ -296,6 +296,33 @@ What is Authentication?
 How do we know who sent a request?
 → JWT Filter extracts email from token and stores it in SecurityContext.
 
-# DAY 2 - Frontend Setup
+# DAY 8 — Chat Database Design
 
 ## Completed
+
+Completed:
+✔ ChatRoom entity
+✔ Message entity
+✔ User ↔ ChatRoom relationship
+✔ Message relationships
+✔ Repositories
+
+Database Design:
+
+User
+  ↔
+ChatRoom
+  ↓
+Message
+
+
+Interview Points:
+
+Why ManyToMany between User and ChatRoom?
+→ Because one user can participate in many rooms and one room contains many users.
+
+Why Message has ManyToOne with User?
+→ One user can send multiple messages.
+
+Why create database design before WebSocket?
+→ Real-time messages still need permanent storage.
