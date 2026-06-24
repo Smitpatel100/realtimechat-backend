@@ -348,3 +348,25 @@ Interview Question:
 Why separate ChatRoom and Message?
 
 Because chat room manages membership while message stores conversation history.
+
+## DAY 10 - Messaging System
+
+Completed:
+
+✔ Send Message API
+✔ Save Message To Database
+✔ Chat History API
+
+Learned:
+
+Messages belong to:
+- User
+- ChatRoom
+
+Chat history is fetched from database ordered by timestamp.
+
+Interview Question:
+
+Why store messages in database?
+
+Because messages must persist after users disconnect and reconnect.
