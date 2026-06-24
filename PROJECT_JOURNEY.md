@@ -326,3 +326,25 @@ Why Message has ManyToOne with User?
 
 Why create database design before WebSocket?
 → Real-time messages still need permanent storage.
+
+# DAY 9 - Chat Room Management
+
+Completed:
+✔ Create Private Chat
+✔ Create Group Chat
+✔ Add Members
+✔ List User Chat Rooms
+
+Learned:
+
+User ↔ ChatRoom relationship in practice
+
+Authentication is now used to identify current user
+
+Chat rooms are created before messages exist
+
+Interview Question:
+
+Why separate ChatRoom and Message?
+
+Because chat room manages membership while message stores conversation history.
