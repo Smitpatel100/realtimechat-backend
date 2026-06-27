@@ -370,3 +370,21 @@ Interview Question:
 Why store messages in database?
 
 Because messages must persist after users disconnect and reconnect.
+
+## DAY 11 - WebSocket Setup
+
+Completed:
+
+✔ Spring WebSocket
+✔ STOMP Configuration
+✔ WebSocket Endpoint
+✔ Message Broker
+✔ ChatWebSocketController
+✔ WebSocket Handshake Tested (101 Switching Protocols)
+
+Learned:
+
+- HTTP is request-response.
+- WebSocket keeps a persistent connection.
+- STOMP is a messaging protocol over WebSocket.
+- React (StompJS) will communicate with @MessageMapping endpoints.
