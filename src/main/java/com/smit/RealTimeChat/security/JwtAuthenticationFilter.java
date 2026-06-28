@@ -19,11 +19,11 @@ import java.util.Collections;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UserRepository userrepository;
+    private final UserRepository userRepository;
 
-    public JwtAuthenticationFilter(JwtService jwtService, UserRepository userrepository) {
+    public JwtAuthenticationFilter(JwtService jwtService, UserRepository userRepository) {
         this.jwtService = jwtService;
-        this.userrepository = userrepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -33,48 +33,42 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        // Step 1: Read the Authorization header from the request
         String authHeader = request.getHeader("Authorization");
 
-        // Step 2: If header is missing or doesn't start with "Bearer ", skip this filter
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Step 3: Extract the raw token by removing "Bearer " prefix (7 characters)
         String token = authHeader.substring(7);
 
-        // Step 4: Extract the email from inside the token
-        String email = jwtService.extractEmail(token);
+        String email = null;
+        try {
+            email = jwtService.extractEmail(token);
+        } catch (Exception e) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-        // Step 5: Proceed only if email was extracted AND no auth is already set in context
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            // Step 6: Load user from database using the email from the token
-            User user = userrepository.findByEmail(email).orElse(null);
+            User user = userRepository.findByEmail(email).orElse(null);
 
             if (user != null && jwtService.isTokenValid(token, user.getEmail())) {
 
-                // Step 7: Create Authentication object with user details
-            	 UsernamePasswordAuthenticationToken authToken =
-            		    new UsernamePasswordAuthenticationToken(
-            		        user.getEmail(),
-            		        null,
-            		        Collections.emptyList()
-            		    );
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(
+                                user.getEmail(),
+                                null,
+                                Collections.emptyList()
+                        );
 
-                // Step 8: Attach request details to the authentication object
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                // Step 9: Set authentication into SecurityContextHolder
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
-        // Step 10: Continue the request down the filter chain
         filterChain.doFilter(request, response);
     }
 }

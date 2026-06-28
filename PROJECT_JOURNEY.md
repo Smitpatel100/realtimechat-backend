@@ -388,3 +388,46 @@ Learned:
 - WebSocket keeps a persistent connection.
 - STOMP is a messaging protocol over WebSocket.
 - React (StompJS) will communicate with @MessageMapping endpoints.
+
+## DAY 12 - React Authentication
+
+Completed:
+
+✔ Modern Login UI
+✔ Modern Register UI
+✔ JWT stored in localStorage
+✔ AuthContext
+✔ Axios Interceptor
+✔ Protected Routes
+✔ Logout
+
+Learned:
+
+- React Context manages authentication state.
+- JWT persists login using localStorage.
+- Axios automatically attaches Authorization headers.
+- ProtectedRoute secures frontend pages.
+
+## DAY 13 - Chat UI
+
+Completed:
+
+✔ Chat Layout
+✔ Sidebar
+✔ Room List
+✔ Message List
+✔ Message Input
+✔ Send Message
+✔ REST Integration
+
+Learned:
+
+- Chat UI consumes REST APIs.
+- Messages are fetched from the database.
+- UI is componentized into reusable React components.
+
+Interview Question:
+
+Why separate the chat into reusable components?
+
+Because it improves maintainability, readability, and reusability while keeping each component focused on a single responsibility.
