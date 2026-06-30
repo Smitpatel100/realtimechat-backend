@@ -431,3 +431,21 @@ Interview Question:
 Why separate the chat into reusable components?
 
 Because it improves maintainability, readability, and reusability while keeping each component focused on a single responsibility.
+
+## DAY 14 - Real-Time Chat
+
+Completed:
+
+✔ React WebSocket Integration
+✔ STOMP Client
+✔ Real-Time Messaging
+✔ Automatic Room Subscription
+✔ Instant Message Delivery
+✔ WebSocket Cleanup
+
+Learned:
+
+- STOMP is used over WebSocket for structured messaging.
+- React subscribes to a room topic.
+- Messages are broadcast instantly without polling.
+- REST loads history; WebSocket delivers new messages.
