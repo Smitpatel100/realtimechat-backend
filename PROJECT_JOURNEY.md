@@ -449,3 +449,48 @@ Learned:
 - React subscribes to a room topic.
 - Messages are broadcast instantly without polling.
 - REST loads history; WebSocket delivers new messages.
+
+## DAY 15 - Online Presence
+
+Completed:
+✔ Live Online/Offline Status
+✔ Presence Tracking
+✔ Presence Broadcast
+✔ Private Chat Status Indicator
+
+Learned:
+- WebSocket session events can track user presence.
+- Presence is maintained in memory using ConcurrentHashMap.
+- The UI should check the other participant's status in private chats, not the current user's.
+
+Day 16: Typing Indicator ("Alex is typing...")
+Day 17: Read Receipts ("Seen")
+Day 18: File & Image Sharing
+Day 19: User Profiles & Avatars
+Day 20: Search Messages
+Day 21: Notifications
+Day 22: Docker
+Day 23: Deployment (Backend + Frontend)
+Day 24–30: Testing, optimization, GitHub polishing, and interview preparation.
+
+
+## DAY 16 - Typing Indicator
+
+Completed:
+
+✔ Live Typing Indicator
+✔ WebSocket Typing Events
+✔ Auto Stop Typing
+✔ Room-specific Typing Status
+
+Learned:
+
+- Typing events are temporary and should never be stored in the database.
+- STOMP topics are ideal for broadcasting transient events.
+- Debouncing (2-second timeout) prevents excessive network traffic.
+
+Interview Question:
+
+Why are typing indicators not stored in the database?
+
+Because they are transient, real-time events that become irrelevant almost immediately after the user stops typing.
